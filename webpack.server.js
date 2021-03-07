@@ -9,7 +9,20 @@ const config = {
   target: 'node',
 
   mode: 'production',
-
+  module: {
+    rules: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            babelrc: true,
+          }
+        }
+      }
+    ]
+  },
   // Tell webpack the root file of our
   // server application
   entry: './src/server/server.js',

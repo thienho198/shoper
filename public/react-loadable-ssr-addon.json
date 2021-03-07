@@ -1,0 +1,47 @@
+{
+  "entrypoints": [
+    "main"
+  ],
+  "origins": {
+    "1": [
+      2,
+      1
+    ],
+    "main": [
+      0
+    ],
+    "./modules/home": [
+      1,
+      2
+    ]
+  },
+  "assets": {
+    "0": {
+      "js": [
+        {
+          "file": "bundle_47112df5fbadea8fe548.js",
+          "hash": "50fda95169ae74ffd8c7",
+          "publicPath": "bundle_47112df5fbadea8fe548.js"
+        }
+      ]
+    },
+    "1": {
+      "js": [
+        {
+          "file": "1.bundle_47112df5fbadea8fe548.js",
+          "hash": "4d5e0712ddf9115b1c27",
+          "publicPath": "1.bundle_47112df5fbadea8fe548.js"
+        }
+      ]
+    },
+    "2": {
+      "js": [
+        {
+          "file": "2.bundle_47112df5fbadea8fe548.js",
+          "hash": "002983eb443f6dddef63",
+          "publicPath": "2.bundle_47112df5fbadea8fe548.js"
+        }
+      ]
+    }
+  }
+}

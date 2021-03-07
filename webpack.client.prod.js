@@ -1,18 +1,19 @@
 const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 // const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const AssetsPlugin = require('assets-webpack-plugin');
-const assetsPluginInstance = new AssetsPlugin({
-  keepInMemory: true,
-  includeAllFileTypes: false,
-  fileTypes: ['js', 'css'],
-});
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const AssetsPlugin = require('assets-webpack-plugin');
+// const assetsPluginInstance = new AssetsPlugin({
+//   keepInMemory: true,
+//   includeAllFileTypes: false,
+//   fileTypes: ['js', 'css'],
+// });
+const ReactLoadableSSRAddon = require('react-loadable-ssr-addon');
 
 const baseConfig = require('./webpack.base');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -30,8 +31,23 @@ const config = {
     children: true,
   },
   optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
+    // minimize: true,
+    // minimizer: [new TerserPlugin()],
+    splitChunks: {
+      automaticNameDelimiter:'/',
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+          minChunks: 2,
+        },
+        default: {
+          minChunks: 2,
+          reuseExistingChunk: false,
+        },
+      },
+    },
   },
   // optimization: {
   //   minimizer: [
@@ -47,9 +63,12 @@ const config = {
     filename: 'bundle_[hash].js',
     path: path.resolve(__dirname, 'public'),
   },
-  devtool: 'inline-source-map',
+  devtool: 'none',
   plugins: [
-    new BundleAnalyzerPlugin(),
+    new ReactLoadableSSRAddon({
+      filename: 'react-loadable-ssr-addon.json',
+  }),
+    // new BundleAnalyzerPlugin(),
 
     new CompressionPlugin(),
     new webpack.DefinePlugin({
@@ -59,7 +78,7 @@ const config = {
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new LodashModuleReplacementPlugin(),
-    assetsPluginInstance,
+    // assetsPluginInstance,
   ],
 };
 

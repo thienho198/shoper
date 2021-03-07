@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet';
 
 class Home extends React.Component {
   render() {
-    console.log('render home');
     return (
       <React.Fragment>
         <Helmet>
@@ -16,6 +15,5 @@ class Home extends React.Component {
   }
 }
 
-export default {
-  component: Home,
-};
+export default Home ;
+

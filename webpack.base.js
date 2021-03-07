@@ -33,6 +33,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
+          babelrc: false,
           presets: [
             '@babel/preset-react',
             ['@babel/env', { targets: { browsers: ['last 2 versions'] } }],
@@ -40,6 +41,8 @@ module.exports = {
           plugins: [
             '@babel/plugin-proposal-class-properties',
             '@babel/plugin-proposal-export-default-from',
+            '@babel/plugin-syntax-dynamic-import',
+            'react-loadable/babel'
           ],
         },
       },
