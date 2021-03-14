@@ -3,43 +3,50 @@
     "main"
   ],
   "origins": {
-    "1": [
-      2,
-      1
-    ],
-    "main": [
+    "0": [
+      1,
       0
     ],
     "./modules/home": [
-      1,
-      2
+      0,
+      1
+    ],
+    "main": [
+      "main"
     ]
   },
   "assets": {
     "0": {
       "js": [
         {
-          "file": "bundle_47112df5fbadea8fe548.js",
-          "hash": "50fda95169ae74ffd8c7",
-          "publicPath": "bundle_47112df5fbadea8fe548.js"
+          "file": "0.bundle_e134f7a4bf29e2349509.js",
+          "hash": "bc0afc145e4e40cd5732",
+          "publicPath": "0.bundle_e134f7a4bf29e2349509.js"
         }
       ]
     },
     "1": {
       "js": [
         {
-          "file": "1.bundle_47112df5fbadea8fe548.js",
-          "hash": "4d5e0712ddf9115b1c27",
-          "publicPath": "1.bundle_47112df5fbadea8fe548.js"
+          "file": "1.bundle_e134f7a4bf29e2349509.js",
+          "hash": "a6d1b50726b5dc20d22d",
+          "publicPath": "1.bundle_e134f7a4bf29e2349509.js"
         }
       ]
     },
-    "2": {
+    "main": {
+      "css": [
+        {
+          "file": "styles.css",
+          "hash": "aa30c636e6436597040b",
+          "publicPath": "styles.css"
+        }
+      ],
       "js": [
         {
-          "file": "2.bundle_47112df5fbadea8fe548.js",
-          "hash": "002983eb443f6dddef63",
-          "publicPath": "2.bundle_47112df5fbadea8fe548.js"
+          "file": "bundle_e134f7a4bf29e2349509.js",
+          "hash": "aa30c636e6436597040b",
+          "publicPath": "bundle_e134f7a4bf29e2349509.js"
         }
       ]
     }

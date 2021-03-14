@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../header/Header';
 import { renderRoutes } from 'react-router-config';
 
 class RootLayout extends React.Component {
@@ -6,7 +7,7 @@ class RootLayout extends React.Component {
     const { route } = this.props;
     return (
       <div>
-        <div>Header</div>
+        <Header />
         {renderRoutes(route.routes)}
         <div>Footer</div>
       </div>
