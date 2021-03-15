@@ -5,6 +5,8 @@ import products from '../../modules/mock/products';
 import ProductItem from '../../components/product-item/ProductItem';
 import Modal from '../../components/mymodal';
 import FormAddToCart from './components/form-atcart/FormAddToCart';
+import { Helmet } from 'react-helmet';
+
 class SearchPage extends React.Component {
     constructor(props) {
         super(props);
@@ -50,31 +52,36 @@ class SearchPage extends React.Component {
     render() {
         const ojParams = this.covertUrlStringToObj(this.props.history.location.search.replace('?', '') || '');
         return (
-            <div className="shoper-body">
-                <div className="shoper-body-container container">
-                    <div className="shoper-body-container__content">
-                        <div className="shoper-body-container__content__filterwraper">
-                            <div className="shoper-body-container__content__filterwraper__title">
-                                <div className="shoper-body-container__content__filterwraper__title__icon">
-                                    <FilterIcon width="14" height="14"/>
-                                </div>
-                                <div className="shoper-body-container__content__filterwraper__title__name">
-                                    SEARCH FILTER
+            <React.Fragment>
+                <Helmet>
+                    <title>Shoper Searching</title>
+                </Helmet>
+                <div className="shoper-body">
+                    <div className="shoper-body-container container">
+                        <div className="shoper-body-container__content">
+                            <div className="shoper-body-container__content__filterwraper">
+                                <div className="shoper-body-container__content__filterwraper__title">
+                                    <div className="shoper-body-container__content__filterwraper__title__icon">
+                                        <FilterIcon width="14" height="14"/>
+                                    </div>
+                                    <div className="shoper-body-container__content__filterwraper__title__name">
+                                        SEARCH FILTER
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="shoper-body-container__content__searchresults">
-                            <div className="shoper-body-container__content__searchresults__keyword">
-                                Search result for <span className="shoper-body-container__content__searchresults__keyword__innerspan" >'{ojParams.keyword || 'All'}'</span>
-                            </div>
-                            <div className="shoper-body-container__content__searchresults__listproduct">
-                                {this.state.data.map(product =><ProductItem key={product.id} product={product} addToCartOpenModal={(id)=>this.addToCartOpenModal(id)}/>)}
+                            <div className="shoper-body-container__content__searchresults">
+                                <div className="shoper-body-container__content__searchresults__keyword">
+                                    Search result for <span className="shoper-body-container__content__searchresults__keyword__innerspan" >'{ojParams.keyword || 'All'}'</span>
+                                </div>
+                                <div className="shoper-body-container__content__searchresults__listproduct">
+                                    {this.state.data.map(product =><ProductItem key={product.id} product={product} addToCartOpenModal={(id)=>this.addToCartOpenModal(id)}/>)}
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <Modal getRef={(ref)=>{this.modalRef = ref}}/>
                 </div>
-                <Modal getRef={(ref)=>{this.modalRef = ref}}/>
-            </div>
+            </React.Fragment>
         )
     }
 }

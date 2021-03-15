@@ -13,3 +13,17 @@ export const addProductToCart = (product,quantity) => {
     quantity: quantity
   }
 }
+
+export const subtractProductNumber = (id) =>{
+  return {
+    type: actionTypes.SUBTRACT_PRODUCT_NUMBER,
+    id: id
+  }
+}
+
+export const plusProductNumber = (id) =>{
+  return {
+    type: actionTypes.PLUS_PRODUCT_NUMBER,
+    id: id
+  }
+}

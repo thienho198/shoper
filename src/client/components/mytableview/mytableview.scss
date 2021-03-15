@@ -1,0 +1,71 @@
+.mytableview{
+    border-radius: 5px;
+    overflow: auto;
+    min-height: 300px;
+    &__header{
+        display:flex;
+        height: 50px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e8e8e8;
+        background-color: white;
+        &__item{
+            font-size:14px;
+            color: black;
+            font-weight: 600;
+            display:flex;
+            align-items: center;
+        }
+    }
+    &__content{
+        background-color: white;
+        &__row{
+            position: relative;
+            display:flex;
+            border-bottom: 1px solid #e8e8e8;
+            &__item{
+                display:flex;
+                align-items: center;
+                font-size: 14px;
+            }
+            .action__btns{
+                display: none;
+                position: absolute;
+                width: 130px;
+                height: 59px;
+                right: 0;
+                background-color: #f8fcff;
+                padding: 15px 0;
+                padding-right: 10px;
+                &__btn{
+                    float: right;
+                    cursor: pointer;
+                    margin-right:8px;
+                }
+            }
+            
+        }
+        &__row:hover{
+            background-color: #f8fcff;
+            .action__btns{
+                display:block;
+            }
+        }
+    }
+}
+
+.mytableview::-webkit-scrollbar {
+    width: 17px;
+  }
+  
+  /* Track */
+  .mytableview::-webkit-scrollbar-thumb {
+    background: #bbb; 
+    border-radius: 6px;
+    border: 4px solid #eee;
+  }
+  .mytableview::-webkit-scrollbar-track {
+    background: #eee;
+  }
+  .mytableview::-webkit-scrollbar-thumb:hover {
+    background: #999; 
+  }

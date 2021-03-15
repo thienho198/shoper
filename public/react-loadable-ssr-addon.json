@@ -12,15 +12,15 @@
       "css": [
         {
           "file": "styles.css",
-          "hash": "350a48093e82e5ecfed7",
+          "hash": "d4cb57a528ee2fbd0863",
           "publicPath": "styles.css"
         }
       ],
       "js": [
         {
-          "file": "bundle_ddabf21866fab7ded263.js",
-          "hash": "350a48093e82e5ecfed7",
-          "publicPath": "bundle_ddabf21866fab7ded263.js"
+          "file": "bundle_a24dfa2777590ebaeafc.js",
+          "hash": "d4cb57a528ee2fbd0863",
+          "publicPath": "bundle_a24dfa2777590ebaeafc.js"
         }
       ]
     }

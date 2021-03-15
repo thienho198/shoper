@@ -3,6 +3,7 @@ import './styles/header.scss';
 import {ReactComponent as SearchIcon} from './icons/SearchIcon.svg';
 import {ReactComponent as CartIcon} from './icons/CartIcon.svg';
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 const TOOLS_LEFT = ['Seller Centre','Sell on Shoper', 'Download'];
 const TOOLS_RIGHT = ['Notifications', 'Help'];
@@ -35,6 +36,7 @@ class Header extends React.Component {
         return JSON.parse('{"' + decodeURI(url).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
      }
     render() {
+        const numberProducts =  this.props.cart.length
         return (
             <div className="header-fluid">
                 <div className="shoper-header container">
@@ -54,8 +56,11 @@ class Header extends React.Component {
                             <input className="shoper-header__search-area__search__input" type="text" placeholder="Search for products" value={this.state.keyword || ''} onChange={this.onSearchInputChange}/>
                             <div className="shoper-header__search-area__search__button" onClick={this.onSearchHandler}><SearchIcon width="16" height="16"/></div>
                         </div>
-                        <div className="shoper-header__search-area__cart">
+                        <div onClick={()=>{this.props.history.push('/cart')}} className="shoper-header__search-area__cart">
                             <CartIcon width="30" height="30"/>
+                            <div className="shoper-header__search-area__cart__badge">
+                                {numberProducts}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,4 +69,9 @@ class Header extends React.Component {
     }
 }
 
-export default withRouter(Header);
+const mapStateToProps = (state) =>{
+    return {
+        cart: state.default.cart
+    }
+}
+export default connect(mapStateToProps)(withRouter(Header));
