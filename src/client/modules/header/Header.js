@@ -21,14 +21,13 @@ class Header extends React.Component {
     onSearchHandler = ()=>{
         this.props.history.push({
             pathname: '/search',
-            search: `?keyword=${this.state.keyword}`,
+            search: `?keyword=${this.state.keyword || ''}`,
         })
     }
     //#region lifecycle 
     componentDidMount(){
         const ojParams = this.covertUrlStringToObj(this.props.history.location.search.replace('?', '') || '')
-        console.log(ojParams)
-        this.setState({keyword:ojParams.keyword})
+        this.setState({keyword:ojParams.keyword || ''})
     }
     //#region funcs
     covertUrlStringToObj = (url)=>{
@@ -41,10 +40,10 @@ class Header extends React.Component {
                 <div className="shoper-header container">
                     <div className="shoper-header__tools">
                         <div className="shoper-header__tools__left">
-                            {TOOLS_LEFT.map(item=><div className="shoper-header__tools__left__item">{item}</div>)}
+                            {TOOLS_LEFT.map(item=><div key={item} className="shoper-header__tools__left__item">{item}</div>)}
                         </div>
                         <div className="shoper-header__tools__right">
-                            {TOOLS_RIGHT.map(item=><div className="shoper-header__tools__right__item">{item}</div>)}
+                            {TOOLS_RIGHT.map(item=><div key={item} className="shoper-header__tools__right__item">{item}</div>)}
                         </div>
                     </div>
                     <div className="shoper-header__search-area">

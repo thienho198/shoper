@@ -10,7 +10,7 @@ export default [
     ...RootLayout,
     routes: [
       {
-        ...HomePage,
+        ...SearchPage,
         path: '/',
         exact: true,
       },

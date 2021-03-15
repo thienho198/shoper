@@ -1,8 +1,11 @@
 .shoper-product-item{
+    position: relative;
     width: 186px;
     background-color: white;
     margin-right: 13px;
     margin-bottom: 13px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
     &__image{
         img{
             width: 100%;
@@ -51,5 +54,27 @@
             text-align: right;
             font-size: 13px;
         }
+        &__button-atc{
+            position:absolute;
+            top:100%;
+            left:-1px;
+            right:-1px;
+            height:30px;
+            color: white;
+            background-color:#f6432e;
+            align-items:center;
+            justify-content:center;
+            z-index: 2;
+            display:none;
+            cursor: pointer;
+        }
+
     }
+}
+.shoper-product-item:hover{
+    border: 1px solid #f6432e;
+    border-bottom: 1px solid transparent;
+}
+.shoper-product-item:hover .shoper-product-item__content__button-atc{
+    display: flex;
 }
