@@ -10,6 +10,8 @@ import Routes from './routes';
 import { store } from './store';
 import { sayHello } from './store/actions/default';
 
+import './assets/images'
+
 // store.dispatch(checkLogin());
 // store.dispatch(getOptions());
 store.dispatch(sayHello());

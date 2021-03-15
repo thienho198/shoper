@@ -1,24 +1,23 @@
 import React from 'react';
 import RootLayout from './modules/root-layout';
-import Loadable from 'react-loadable';
-import {loadData as loadDataHomePage} from './modules/home/loadData';
-const HomePage = Loadable({
-  loader: () => import('./modules/home'),
-  loading() {
-    return <div>Loading...</div>
-  }
-});
+// import Loadable from 'react-loadable';
+// import {loadData as loadDataHomePage} from './modules/home/loadData';
+import HomePage from './pages/home/HomePage';
+import SearchPage from './pages/search/SearchPage';
 
 export default [
   {
     ...RootLayout,
     routes: [
       {
-        component:HomePage,
-        loadData: loadDataHomePage,
+        ...HomePage,
         path: '/',
         exact: true,
       },
+      {
+        ...SearchPage,
+        path: '/search'
+      }
     ],
   },
 ];

@@ -52,7 +52,7 @@ class Header extends React.Component {
                             Shoper
                         </div>
                         <div className="shoper-header__search-area__search">
-                            <input className="shoper-header__search-area__search__input" type="text" placeholder="Search for products" value={this.state.keyword} onChange={this.onSearchInputChange}/>
+                            <input className="shoper-header__search-area__search__input" type="text" placeholder="Search for products" value={this.state.keyword || ''} onChange={this.onSearchInputChange}/>
                             <div className="shoper-header__search-area__search__button" onClick={this.onSearchHandler}><SearchIcon width="16" height="16"/></div>
                         </div>
                         <div className="shoper-header__search-area__cart">

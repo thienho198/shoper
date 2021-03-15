@@ -1,5 +1,8 @@
 .header-fluid{
-    background-color: #017fff;
+    // background-color: #017fff;
+    background: linear-gradient(
+        -180deg
+        ,#f53d2d,#f63);
 }
 .shoper-header{
     &__tools{
@@ -61,7 +64,10 @@
                 outline: none;
             }
             &__button{
-                background-color:#017fff;
+                // background-color:#017fff;
+                background: linear-gradient(
+                    -180deg
+                    ,#f53d2d,#f63);
                 padding: 8px 16px;
                 border-radius: 3px;
                 line-height: 0;

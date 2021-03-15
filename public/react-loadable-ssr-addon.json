@@ -3,50 +3,24 @@
     "main"
   ],
   "origins": {
-    "0": [
-      1,
-      0
-    ],
-    "./modules/home": [
-      0,
-      1
-    ],
     "main": [
       "main"
     ]
   },
   "assets": {
-    "0": {
-      "js": [
-        {
-          "file": "0.bundle_e134f7a4bf29e2349509.js",
-          "hash": "bc0afc145e4e40cd5732",
-          "publicPath": "0.bundle_e134f7a4bf29e2349509.js"
-        }
-      ]
-    },
-    "1": {
-      "js": [
-        {
-          "file": "1.bundle_e134f7a4bf29e2349509.js",
-          "hash": "a6d1b50726b5dc20d22d",
-          "publicPath": "1.bundle_e134f7a4bf29e2349509.js"
-        }
-      ]
-    },
     "main": {
       "css": [
         {
           "file": "styles.css",
-          "hash": "aa30c636e6436597040b",
+          "hash": "08e5d5c98fd789deb36b",
           "publicPath": "styles.css"
         }
       ],
       "js": [
         {
-          "file": "bundle_e134f7a4bf29e2349509.js",
-          "hash": "aa30c636e6436597040b",
-          "publicPath": "bundle_e134f7a4bf29e2349509.js"
+          "file": "bundle_d61392a1e96959ffee61.js",
+          "hash": "08e5d5c98fd789deb36b",
+          "publicPath": "bundle_d61392a1e96959ffee61.js"
         }
       ]
     }
