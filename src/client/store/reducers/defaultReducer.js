@@ -33,7 +33,15 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, { sayHello: true });
     case actionTypes.ADD_PRODUCT_TO_CART:
       const updateCart = [...state.cart];
-      updateCart.push({product:action.product, quantity:action.quantity});
+      const itemIndex = updateCart.findIndex(item => item.product.id===action.product.id);
+      if(itemIndex>=0){
+        const updateItem = {...updateCart[itemIndex]}
+        updateItem.quantity = updateItem.quantity + action.quantity
+        updateCart[itemIndex] = updateItem;
+      }
+      else{
+        updateCart.push({product:action.product, quantity:action.quantity});
+      }
       return updateObject(state, {cart: updateCart});
     case actionTypes.SUBTRACT_PRODUCT_NUMBER:
       return updateObject(state, {cart: subtractProductNumber(state,action)});
