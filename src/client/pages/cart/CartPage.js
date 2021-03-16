@@ -5,7 +5,7 @@ import _ from 'lodash';
 import currency from 'currency.js'
 import TableView from '../../components/mytableview';
 import {store} from '../../store';
-import {subtractProductNumber, plusProductNumber} from '../../store/actions/default';
+import {subtractProductNumber, plusProductNumber, removeProduct} from '../../store/actions/default';
 import { Helmet } from 'react-helmet';
 
 const TOOLS_LEFT = ['Seller Centre','Sell on Shoper', 'Download'];
@@ -14,18 +14,38 @@ const TOOLS_RIGHT = ['Notifications', 'Help'];
 class CartPage extends React.Component {
     constructor(props) {
         super(props);
+        this.inputSearchRef = React.createRef();
+        this.state = {
+            cart: _.get(store.getState(),'default.cart') || []
+        }
     }
 
 
-
+    //#region events
     handleChange = ()=> {
         this.previousValue = this.currentValue || null;
         this.currentValue = store.getState().default.cart
         if (this.previousValue !== this.currentValue) {
+            this.setState({cart:this.currentValue})
             this.tableViewRef.setValues(this.currentValue.map(product =>{return{...product.product, quantity:product.quantity}}))
         }
       }
-
+    onRemoveProduct = (id) =>{
+        store.dispatch(removeProduct(id));
+    }
+    onSearchHandler = ()=>{
+        const value = this.inputSearchRef.current.value;
+        this.props.history.push({
+            pathname:'/search',
+            search: `?keyword=${value}`
+        })
+    }
+    onKeyDownHandler = (e)=>{
+        if (e.key === 'Enter') {
+            this.onSearchHandler()
+        }
+    }
+    //#region life cycle
     componentDidMount(){
        this.currentValue = store.getState().default.cart
        this.unscribe = store.subscribe(this.handleChange)
@@ -33,6 +53,7 @@ class CartPage extends React.Component {
     componentWillUnmount(){
         this.unscribe()
     }
+    //#region render
     renderQuantity(quantity, id) {
         const onSubtractHandler = ()=>{
             store.dispatch(subtractProductNumber(id))
@@ -56,8 +77,9 @@ class CartPage extends React.Component {
         </div>
         )
     }
+    
     render() {
-        const cart = _.get(store.getState(),'default.cart')
+        const total = this.state.cart.reduce((total,item)=>total + (item.product.price * item.quantity),0   );
         return (
             <React.Fragment>
             <Helmet>
@@ -80,16 +102,17 @@ class CartPage extends React.Component {
                             <span className="shoper-cart-page__header__container__logo__left" >Shoper</span> <span className="shoper-cart-page__header__container__logo__linebreak"/> <span className="shoper-cart-page__header__container__logo__right">Cart</span>
                         </div>
                         <div className="shoper-cart-page__header__container__search">
-                            <input className="shoper-cart-page__header__container__search__input" type="text" placeholder="Search for products"/>
-                            <div className="shoper-cart-page__header__container__search__button">
+                            <input onKeyDown={this.onKeyDownHandler} ref={this.inputSearchRef} className="shoper-cart-page__header__container__search__input" type="text" placeholder="Search for products"/>
+                            <div onClick={this.onSearchHandler} className="shoper-cart-page__header__container__search__button">
                                 <SearchIcon width="16" height="16"/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="shoper-cart-page__body">
-                    <div className="container">
+                    <div className="shoper-cart-page__body__container container">
                                 <TableView 
+                                    minHeight='0'
                                     linkRef={ref=>this.tableViewRef = ref}
                                     columnsDef={
                                         [
@@ -98,11 +121,18 @@ class CartPage extends React.Component {
                                         {field: 'price', label:'Price', width:'100px', renderer:(dataRow)=><div>{currency(dataRow.price).format()}</div>},
                                         {field: 'quantity', label:'Quantity', width:'100px', renderer:dataRow=>this.renderQuantity(dataRow.quantity, dataRow.id)},
                                         {field: 'sum', label:'Sum', width:'100px',renderer:(dataRow)=>{return <div>{currency(dataRow.price * dataRow.quantity).format()}</div>}},
-                                        {field: 'action', label:'Action', width:'200px'}
+                                        {field: 'action', label:'Action', width:'200px', renderer:(dataRow)=><div onClick={()=>this.onRemoveProduct(dataRow.id)} className="remove-item-cart">Remove</div>}
                                     ]}  
-                                    rowsData={cart.map(product =>{return{...product.product, quantity:product.quantity}})}                                   
+                                    rowsData={this.state.cart.map(product =>{return{...product.product, quantity:product.quantity}})}                                   
                                 />
-
+                        <div className="shoper-cart-page__body__container__total">
+                            <div className="shoper-cart-page__body__container__total__label">
+                                TOTAL:
+                            </div>
+                            <div className="shoper-cart-page__body__container__total__content">
+                                {currency(total).format()}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

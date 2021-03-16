@@ -25,6 +25,11 @@ class Header extends React.Component {
             search: `?keyword=${this.state.keyword || ''}`,
         })
     }
+    onKeyDownHandler = (e)=>{
+        if (e.key === 'Enter') {
+            this.onSearchHandler()
+        }
+    }
     //#region lifecycle 
     componentDidMount(){
         const ojParams = this.covertUrlStringToObj(this.props.history.location.search.replace('?', '') || '')
@@ -53,7 +58,7 @@ class Header extends React.Component {
                             Shoper
                         </div>
                         <div className="shoper-header__search-area__search">
-                            <input className="shoper-header__search-area__search__input" type="text" placeholder="Search for products" value={this.state.keyword || ''} onChange={this.onSearchInputChange}/>
+                            <input onKeyDown={this.onKeyDownHandler} className="shoper-header__search-area__search__input" type="text" placeholder="Search for products" value={this.state.keyword || ''} onChange={this.onSearchInputChange}/>
                             <div className="shoper-header__search-area__search__button" onClick={this.onSearchHandler}><SearchIcon width="16" height="16"/></div>
                         </div>
                         <div onClick={()=>{this.props.history.push('/cart')}} className="shoper-header__search-area__cart">

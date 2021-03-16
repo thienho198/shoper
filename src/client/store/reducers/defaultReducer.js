@@ -21,6 +21,12 @@ const plusProductNumber = (state,action)=>{
   updateCart[indexItem] = updateItem;
   return updateCart;
 }
+const removeProduct = (state,action)=>{
+  const updateCart = [...state.cart];
+  const indexItem = updateCart.findIndex(item => item.product.id===action.id);
+  updateCart.splice(indexItem,1);
+  return updateCart;
+}
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.DEFAULT_REDUCER_HELLO:
@@ -32,7 +38,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SUBTRACT_PRODUCT_NUMBER:
       return updateObject(state, {cart: subtractProductNumber(state,action)});
     case actionTypes.PLUS_PRODUCT_NUMBER:
-      return updateObject(state, {cart: plusProductNumber(state,action)})
+      return updateObject(state, {cart: plusProductNumber(state,action)});
+    case actionTypes.REMOVE_PRODUCT:
+      return updateObject(state, {cart: removeProduct(state,action)})
     default:
       return state;
   }

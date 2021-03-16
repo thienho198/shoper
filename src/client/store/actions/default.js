@@ -27,3 +27,10 @@ export const plusProductNumber = (id) =>{
     id: id
   }
 }
+
+export const removeProduct = (id) =>{
+  return {
+    type: actionTypes.REMOVE_PRODUCT,
+    id: id
+  }
+}
